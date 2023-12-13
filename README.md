@@ -158,7 +158,18 @@ Run the tests using:
 
 docker-compose  exec  web  python  manage.py  test
 
-  
+```
+## New packeges
+
+Run the tests using:
+
+```bash
+
+docker-compose exec web pip install requests
+
+docker-compose exec web pip freeze > requirements.txt
+
+```  
 
 ## API Documentation
 

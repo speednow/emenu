@@ -140,11 +140,7 @@
         "fields": {
             "name": "Menu Śródziemnomorskie",
             "description": "Smaki basenu Morza Śródziemnego.",
-            "dishes": [
-                5,
-                12,
-                19
-            ],
+            "dishes": [],
             "created_at": "2023-12-13T12:30:00",
             "updated_at": "2023-12-13T12:30:00"
         }

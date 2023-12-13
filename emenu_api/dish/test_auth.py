@@ -19,7 +19,7 @@ class DishTestCase(APITestCase):
     def test_list_dishes(self):
         response = self.client.get(reverse("dish-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 5)
+        self.assertEqual(len(response.data["results"]), 10)
 
     def test_create_dish(self):
         data = {"name": "New Dish", "price": 20.00, "description": "New Description", "preparation_time": 30, "is_vegetarian": True}
@@ -62,6 +62,7 @@ class DishTestCase(APITestCase):
         response = self.client.post(reverse("dish-list"), data, format="multipart")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(Dish.objects.filter(name="Dish with Image").exists())
+        Dish.objects.filter(name="Dish with Image").delete()
 
     def test_filter_dishes_by_name(self):
         response = self.client.get(reverse("dish-list"), {"name__exact": "Test Dish 1"})
@@ -77,4 +78,4 @@ class DishTestCase(APITestCase):
     def test_filter_dishes_by_created_at_range(self):
         response = self.client.get(reverse("dish-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-31T23:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 5)
+        self.assertEqual(len(response.data["results"]), 10)

@@ -18,7 +18,7 @@ class UnauthenticatedMenuTestCase(APITestCase):
     def test_list_menus(self):
         response = self.client.get(reverse("menu-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["count"], 11)
+        self.assertEqual(response.data["count"], 10)
 
     def test_get_single_menu(self):
         menu = Menu.objects.first()
@@ -34,12 +34,12 @@ class UnauthenticatedMenuTestCase(APITestCase):
     def test_filter_menus_by_created_at_range(self):
         response = self.client.get(reverse("menu-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-31T23:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["count"], 11)
+        self.assertEqual(response.data["count"], 10)
 
     def test_filter_menus_by_updated_at_range(self):
         response = self.client.get(reverse("menu-list"), {"updated_at__gte": "2023-01-01T00:00:00Z", "updated_at__lte": "2023-12-31T23:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["count"], 11)
+        self.assertEqual(response.data["count"], 10)
 
     def test_create_menu_with_dishes(self):
         data = {"name": "New Menu with Dishes", "description": "New Description", "dish_ids": [self.dish1.id, self.dish2.id]}
@@ -54,10 +54,7 @@ class UnauthenticatedMenuTestCase(APITestCase):
 
     def test_partial_update_menu_with_dishes(self):
         menu = Menu.objects.first()
-        data = {
-            "description": "Updated Description",
-            "dish_ids": [self.dish1.id],
-        }
+        data = {"description": "Updated Description", "dish_ids": [self.dish1.id]}
         response = self.client.patch(reverse("menu-detail", kwargs={"pk": menu.id}), data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 

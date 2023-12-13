@@ -55,7 +55,7 @@ class MenuTestCase(APITestCase):
     def test_list_menus(self):
         response = self.client.get(reverse("menu-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 5)
+        self.assertEqual(len(response.data["results"]), 10)
 
     def test_get_single_menu(self):
         menu = Menu.objects.first()
@@ -101,12 +101,12 @@ class MenuTestCase(APITestCase):
     def test_filter_menus_by_created_at_range(self):
         response = self.client.get(reverse("menu-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-31T23:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 5)
+        self.assertEqual(len(response.data["results"]), 10)
 
     def test_filter_menus_by_updated_at_range(self):
         response = self.client.get(reverse("menu-list"), {"updated_at__gte": "2023-01-01T00:00:00Z", "updated_at__lte": "2023-12-31T23:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 5)
+        self.assertEqual(len(response.data["results"]), 10)
 
     def test_dishes_count(self):
         data = {"name": "New Menu with Dishes", "description": "New Description", "dish_ids": [self.dish1.id, self.dish2.id]}

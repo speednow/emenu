@@ -1,0 +1,301 @@
+[
+    {
+        "model": "dish.Dish",
+        "pk": 1,
+        "fields": {
+            "name": "Spaghetti Carbonara",
+            "description": "Klasyczne włoskie spaghetti z boczkiem.",
+            "price": 24.99,
+            "preparation_time": 30,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T09:00:00",
+            "updated_at": "2023-12-12T09:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 2,
+        "fields": {
+            "name": "Margherita Pizza",
+            "description": "Tradycyjna pizza z pomidorami, mozzarellą i bazylią.",
+            "price": 19.99,
+            "preparation_time": 20,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T09:00:00",
+            "updated_at": "2023-12-12T09:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 3,
+        "fields": {
+            "name": "Chicken Alfredo",
+            "description": "Klasyczne danie z kurczakiem i sosem śmietanowym.",
+            "price": 29.99,
+            "preparation_time": 35,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T10:00:00",
+            "updated_at": "2023-12-12T10:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 4,
+        "fields": {
+            "name": "Vegetable Stir-Fry",
+            "description": "Warzywne danie smażone na woku z sosem sojowym.",
+            "price": 22.99,
+            "preparation_time": 25,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T10:00:00",
+            "updated_at": "2023-12-12T10:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 5,
+        "fields": {
+            "name": "BBQ Ribs",
+            "description": "Soczyste żeberka zapieczone w sosie BBQ.",
+            "price": 32.99,
+            "preparation_time": 45,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T11:00:00",
+            "updated_at": "2023-12-12T11:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 6,
+        "fields": {
+            "name": "Caesar Salad",
+            "description": "Świeży sałatka Cezar z kurczakiem, krutonami i sosem czosnkowym.",
+            "price": 15.99,
+            "preparation_time": 15,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T12:00:00",
+            "updated_at": "2023-12-12T12:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 7,
+        "fields": {
+            "name": "Mushroom Risotto",
+            "description": "Risotto z grzybami i śmietankowym sosem.",
+            "price": 21.99,
+            "preparation_time": 30,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T12:00:00",
+            "updated_at": "2023-12-12T12:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 8,
+        "fields": {
+            "name": "Beef Tacos",
+            "description": "Tacos z wołowiną, sałatką i guacamole.",
+            "price": 17.99,
+            "preparation_time": 25,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T13:00:00",
+            "updated_at": "2023-12-12T13:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 9,
+        "fields": {
+            "name": "Shrimp Scampi",
+            "description": "Krewetki duszone w masle czosnkowym i białym winie.",
+            "price": 27.99,
+            "preparation_time": 20,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T14:00:00",
+            "updated_at": "2023-12-12T14:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 10,
+        "fields": {
+            "name": "Caprese Salad",
+            "description": "Klasyczna sałatka Caprese z pomidorami, mozzarellą i bazylią.",
+            "price": 16.99,
+            "preparation_time": 10,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T14:00:00",
+            "updated_at": "2023-12-12T14:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 11,
+        "fields": {
+            "name": "Beef Stroganoff",
+            "description": "Wołowina duszona w sosie śmietanowym z pieczarkami.",
+            "price": 23.99,
+            "preparation_time": 35,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T15:00:00",
+            "updated_at": "2023-12-12T15:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 12,
+        "fields": {
+            "name": "Veggie Burger",
+            "description": "Wegetariański burger z warzywami i serem.",
+            "price": 18.99,
+            "preparation_time": 20,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T16:00:00",
+            "updated_at": "2023-12-12T16:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 13,
+        "fields": {
+            "name": "Salmon Fillet",
+            "description": "Fillet łososia pieczony z ziołami i cytryną.",
+            "price": 25.99,
+            "preparation_time": 30,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T16:00:00",
+            "updated_at": "2023-12-12T16:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 14,
+        "fields": {
+            "name": "Vegetable Curry",
+            "description": "Warzywne curry z aromatycznymi przyprawami.",
+            "price": 20.99,
+            "preparation_time": 25,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T17:00:00",
+            "updated_at": "2023-12-12T17:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 15,
+        "fields": {
+            "name": "Tofu Stir-Fry",
+            "description": "Smażony tofu z warzywami i sosem sojowym.",
+            "price": 17.99,
+            "preparation_time": 25,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T18:00:00",
+            "updated_at": "2023-12-12T18:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 16,
+        "fields": {
+            "name": "Seafood Paella",
+            "description": "Klasyczna paella z owocami morza i ryżem.",
+            "price": 28.99,
+            "preparation_time": 40,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T18:00:00",
+            "updated_at": "2023-12-12T18:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 17,
+        "fields": {
+            "name": "Penne alla Vodka",
+            "description": "Penne w sosie pomidorowym z wódką i śmietaną.",
+            "price": 22.99,
+            "preparation_time": 30,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T19:00:00",
+            "updated_at": "2023-12-12T19:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 18,
+        "fields": {
+            "name": "Beef and Broccoli",
+            "description": "Wołowina i brokuły w sosie sojowym.",
+            "price": 23.99,
+            "preparation_time": 25,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T20:00:00",
+            "updated_at": "2023-12-12T20:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 19,
+        "fields": {
+            "name": "Spinach and Feta Stuffed Chicken",
+            "description": "Kurczak nadziewany szpinakiem i fetą.",
+            "price": 26.99,
+            "preparation_time": 35,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T20:00:00",
+            "updated_at": "2023-12-12T20:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 20,
+        "fields": {
+            "name": "Veggie Sushi Roll",
+            "description": "Sushi roll z warzywami i ryżem.",
+            "price": 19.99,
+            "preparation_time": 20,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T21:00:00",
+            "updated_at": "2023-12-12T21:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 21,
+        "fields": {
+            "name": "Lemon Garlic Shrimp",
+            "description": "Krewetki w sosie cytrynowym i czosnkowym.",
+            "price": 28.99,
+            "preparation_time": 25,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T22:00:00",
+            "updated_at": "2023-12-12T22:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 22,
+        "fields": {
+            "name": "Mushroom Burger",
+            "description": "Burger z pieczarkami i serem cheddar.",
+            "price": 17.99,
+            "preparation_time": 20,
+            "is_vegetarian": true,
+            "created_at": "2023-12-12T22:00:00",
+            "updated_at": "2023-12-12T22:00:00"
+        }
+    },
+    {
+        "model": "dish.Dish",
+        "pk": 23,
+        "fields": {
+            "name": "Teriyaki Salmon",
+            "description": "Łosoś w sosie teriyaki z pieczonymi warzywami.",
+            "price": 25.99,
+            "preparation_time": 30,
+            "is_vegetarian": false,
+            "created_at": "2023-12-12T23:00:00",
+            "updated_at": "2023-12-12T23:00:00"
+        }
+    }
+]

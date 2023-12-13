@@ -1,0 +1,36 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+  celeryworker:
+    build: .
+    volumes:
+      - .:/app
+    command: celery -A emenu_api worker --loglevel=info
+    depends_on:
+      - db
+      - redis
+  celerybeat:
+    build: .
+    volumes:
+      - .:/app
+    command: celery -A emenu_api beat --loglevel=info
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:14
+    env_file: ./emenu_api/.env
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:7.2
+    ports:
+      - "6379:6379"

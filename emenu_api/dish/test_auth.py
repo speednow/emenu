@@ -16,10 +16,15 @@ class DishTestCase(APITestCase):
         Dish.objects.create(name="Test Dish 1", price=10.50, description="Test Description 1", preparation_time=15, is_vegetarian=True)
         Dish.objects.create(name="Test Dish 2", price=15.00, description="Test Description 2", preparation_time=20, is_vegetarian=False)
 
-    def test_list_dishes(self):
+    def test_list_dishes_pagination(self):
         response = self.client.get(reverse("dish-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data["results"]), 10)
+
+    def test_list_dishes(self):
+        response = self.client.get(reverse("dish-list"))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], Dish.objects.count())
 
     def test_create_dish(self):
         data = {"name": "New Dish", "price": 20.00, "description": "New Description", "preparation_time": 30, "is_vegetarian": True}
@@ -76,6 +81,15 @@ class DishTestCase(APITestCase):
         self.assertEqual(len(response.data["results"]), 2)
 
     def test_filter_dishes_by_created_at_range(self):
-        response = self.client.get(reverse("dish-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-31T23:59:59Z"})
+        response = self.client.get(reverse("dish-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-12T11:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 10)
+        self.assertEqual(len(response.data["results"]), 7)
+
+    def test_filter_dishes_by_created_at_range_pagination(self):
+        start_date = "2023-01-01T00:00:00Z"
+        end_date = "2024-01-07T11:59:59Z"
+
+        filtered_count = Dish.objects.filter(created_at__gte=start_date, created_at__lte=end_date).count()
+        response = self.client.get(reverse("dish-list"), {"created_at__gte": start_date, "created_at__lte": end_date})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], filtered_count)

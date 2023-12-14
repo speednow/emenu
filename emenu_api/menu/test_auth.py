@@ -55,6 +55,11 @@ class MenuTestCase(APITestCase):
     def test_list_menus(self):
         response = self.client.get(reverse("menu-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], Menu.objects.count())
+
+    def test_list_menus_pagination(self):
+        response = self.client.get(reverse("menu-list"))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data["results"]), 10)
 
     def test_get_single_menu(self):
@@ -99,26 +104,42 @@ class MenuTestCase(APITestCase):
         self.assertEqual(response.data["results"][0]["name"], "Test Menu 1")
 
     def test_filter_menus_by_created_at_range(self):
-        response = self.client.get(reverse("menu-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-31T23:59:59Z"})
+        response = self.client.get(reverse("menu-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-12T11:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 10)
+        self.assertEqual(len(response.data["results"]), 2)
+
+    def test_filter_menus_by_created_at_range_pagination(self):
+        start_date = "2023-01-01T00:00:00Z"
+        end_date = "2024-01-07T11:59:59Z"
+
+        filtered_count = Menu.objects.filter(created_at__gte=start_date, created_at__lte=end_date).count()
+        response = self.client.get(reverse("menu-list"), {"created_at__gte": start_date, "created_at__lte": end_date})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], filtered_count)
 
     def test_filter_menus_by_updated_at_range(self):
-        response = self.client.get(reverse("menu-list"), {"updated_at__gte": "2023-01-01T00:00:00Z", "updated_at__lte": "2023-12-31T23:59:59Z"})
+        response = self.client.get(reverse("menu-list"), {"updated_at__gte": "2023-01-01T00:00:00Z", "updated_at__lte": "2023-12-12T11:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 10)
+        self.assertEqual(len(response.data["results"]), 2)
+
+    def test_filter_menus_by_updated_at_range_pagination(self):
+        start_date = "2023-01-01T00:00:00Z"
+        end_date = "2024-01-07T11:59:59Z"
+
+        filtered_count = Menu.objects.filter(updated_at__gte=start_date, updated_at__lte=end_date).count()
+        response = self.client.get(reverse("menu-list"), {"created_at__gte": start_date, "created_at__lte": end_date})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], filtered_count)
 
     def test_dishes_count(self):
         data = {"name": "New Menu with Dishes", "description": "New Description", "dish_ids": [self.dish1.id, self.dish2.id]}
         response = self.client.post(reverse("menu-list"), data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Menu.objects.count(), 13)  # Sprawdzamy, że jest 1 nowe menu
+        self.assertEqual(Menu.objects.count(), 13)
         new_menu = Menu.objects.get(name="New Menu with Dishes")
-        self.assertEqual(new_menu.dishes.count(), 2)  # Oczekujemy, że są 2 dania w nowym menu
+        self.assertEqual(new_menu.dishes.count(), 2)
         self.assertTrue(self.dish1 in new_menu.dishes.all())
         self.assertTrue(self.dish2 in new_menu.dishes.all())
 
-        # Pobieramy istniejące menu i sprawdzamy pole dishes_count
-        menu = Menu.objects.get(name="New Menu with Dishes")
-        serializer = MenuSerializer(instance=menu)
+        serializer = MenuSerializer(instance=new_menu)
         self.assertEqual(serializer.data["dishes_count"], 2)

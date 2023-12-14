@@ -1,5 +1,6 @@
 from dish.models import Dish
 from django.contrib.auth.models import User
+from django.core.cache import caches
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -143,3 +144,6 @@ class MenuTestCase(APITestCase):
 
         serializer = MenuSerializer(instance=new_menu)
         self.assertEqual(serializer.data["dishes_count"], 2)
+
+    def tearDown(self):
+        caches["data"].clear()

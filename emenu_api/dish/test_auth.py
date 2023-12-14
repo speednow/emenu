@@ -1,5 +1,6 @@
 from dish.models import Dish
 from django.contrib.auth.models import User
+from django.core.cache import caches
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from rest_framework import status
@@ -93,3 +94,6 @@ class DishTestCase(APITestCase):
         response = self.client.get(reverse("dish-list"), {"created_at__gte": start_date, "created_at__lte": end_date})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["count"], filtered_count)
+
+    def tearDown(self):
+        caches["data"].clear()

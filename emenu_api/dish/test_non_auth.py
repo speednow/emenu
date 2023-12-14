@@ -1,4 +1,5 @@
 from dish.models import Dish
+from django.core.cache import caches
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -56,3 +57,6 @@ class DishUnauthorizedTestCase(APITestCase):
     def test_filter_dishes_by_created_at_range_unauthorized(self):
         response = self.client.get(reverse("dish-list"), {"created_at__gte": "2023-01-01T00:00:00Z", "created_at__lte": "2023-12-31T23:59:59Z"})
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def tearDown(self):
+        caches["data"].clear()

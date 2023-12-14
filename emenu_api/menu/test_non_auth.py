@@ -1,4 +1,5 @@
 from dish.models import Dish
+from django.core.cache import caches
 from django.db.models import Count
 from django.urls import reverse
 from rest_framework import status
@@ -113,3 +114,6 @@ class UnauthenticatedMenuTestCase(APITestCase):
         data = {"description": "Updated Description"}
         response = self.client.patch(reverse("menu-detail", kwargs={"pk": menu.id}), data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def tearDown(self):
+        caches["data"].clear()
